@@ -9,3 +9,8 @@ for ( i = 0 ; i < 8; i++) {
   var numeroRandom = randomizzatore (1,50);
   console.log(numeroRandom);
 }
+
+
+// chiedo all'utente di inseriree un numero compreso tra
+var numeroUtente = parseInt(prompt('inserisci un numero compreso tra'));
+console.log(numeroUtente);
