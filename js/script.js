@@ -1,9 +1,11 @@
-// creo una funzione che mi genera un numero random dato un range di numeri, estremi compresi
+// CREO LE MIE FUNZIONI
+
+// questa funzione, dato un minimo e un massimo, mi genera un numero random, estremi compresi.
 function randomizzatore(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-// creo una funzione che mi dice se un elemento è presente nell'array
+// questa funzione mi dice se un elemento è presente in un array
 function inArray(array,elemento) {
   var i = 0;
 
@@ -17,9 +19,10 @@ function inArray(array,elemento) {
 }
 
 
+
+
 //creo un array vuoto che sarà il mio 'array numeri vietati'
 var listaNera = [];
-
 
 // con un ciclo for genero 8 numeri random e al suo interno invoco la funzione 'randomizzatore'
 for ( i = 0 ; i < 8; i++) {
@@ -27,17 +30,14 @@ for ( i = 0 ; i < 8; i++) {
   listaNera.push(numeroRandom);
 }
 
-
 // stampo il mio array con gli 8 numeri random
 console.log('i numeri vietati sono ' + listaNera);
-
 
 // chiedo all'utente di inseriree un numero compreso tra
 var numeroUtente = parseInt(prompt('inserisci un numero compreso tra'));
 console.log('il numero inserito dall\'utente è ' + numeroUtente);
 
-
-// invoco la funzione 'inArray' per controllare se il numero inserito dall'utente è presente (TRUE) nella lista di numeri random o no (FALSE)
+// invoco la funzione 'inArray' per controllare se il numero inserito dall'utente è presente nell'array numeri vietati' (TRUE) o no (FALSE)
 var risultato = inArray(listaNera,numeroUtente);
 console.log(risultato);
 
