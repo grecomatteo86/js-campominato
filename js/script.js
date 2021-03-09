@@ -37,17 +37,13 @@ var numeroUtente = parseInt(prompt('inserisci un numero compreso tra'));
 console.log('il numero inserito dall\'utente è ' + numeroUtente);
 
 
-// invoco la funzione 'inArray' per controllare se il numero inserito dall'utente è presente nella lista di numeri random
+// invoco la funzione 'inArray' per controllare se il numero inserito dall'utente è presente (TRUE) nella lista di numeri random o no (FALSE)
 var risultato = inArray(listaNera,numeroUtente);
 console.log(risultato);
 
-
-
-
-
-// // eseguo il controllo:  allora l'utente ha perso, altrimenti continua a giocare
-// if (listaNera.includes(numeroUtente)) {
-//   alert('hai perso');
-// } else {
-//   alert('continua a giocare');
-// }
+//eseguo il controllo
+if (risultato == true) {
+  alert('hai perso');
+} else {
+  alert('continua a giocare');
+}
