@@ -19,61 +19,45 @@ function inArray(array,elemento) {
 }
 
 
-
-
 //creo 2 array vuoti: 'listaNera' ospiterà i numeri vietati, 'listaBianca' ospiterà i numeri scelti dall'utente
 var listaNera = [];
 var listaBianca = [];
 
-// con un ciclo for genero 8 numeri random e al suo interno invoco la funzione 'randomizzatore'
-for ( i = 0 ; i < 8; i++) {
-  var numeroRandom = randomizzatore (1,50);
+// con un ciclo for genero 16 numeri random e al suo interno invoco la funzione 'randomizzatore'
+for ( i = 0 ; i < 5; i++) {
+  var numeroRandom = randomizzatore (1,100);
   listaNera.push(numeroRandom);
 }
 
-// stampo il mio array con gli 8 numeri random
-console.log('i numeri vietati sono ' + listaNera);
+// stampo il mio array con i 16 numeri random
+console.log('nella Lista Nera ci sono i numeri ' + listaNera);
 
-// chiedo all'utente di inseriree un numero compreso tra
-var numeroUtente = parseInt(prompt('inserisci un numero compreso tra'));
-console.log('il numero inserito dall\'utente è ' + numeroUtente);
-
-// invoco la funzione 'inArray' per controllare se il numero inserito dall'utente è presente nell'array numeri vietati' (TRUE) o no (FALSE)
+// invoco la funzione inArray (se TRUE array contiene elemento, se FALSE non contiene)
 var risultato = inArray(listaNera,numeroUtente);
-console.log('numero presente nella Lista Nera? ' + risultato);
 
-//eseguo il controllo: fintantochè il numeroUtente non è presente in listaNera, eseguo il prompt per 10 volte, inserendo i numeri buoni all'interno dell'array listaBianca
-var i = 1;
+//chiedo all'utente di inserire per 3 volte, un numero alla volta, un numero compreso tra 1 e 100
+var i = 0;
 
-while ( i <= 3 ) {
+while ( i < 3 && !inArray(listaNera,numeroUtente)) {
 
-  if (risultato == false) {
+  var numeroUtente = parseInt(prompt('inserisci un numero compreso tra 1 e 100'));
+  console.log('il numero scelto dall\'utente è ' + numeroUtente);
+
+  if (!inArray(listaNera,numeroUtente)) {
 
     listaBianca.push(numeroUtente);
-    console.log('l\'utente non può più scegliere i seguenti numeri: ' + listaBianca);
-    alert('continua a giocare');
-    numeroUtente = parseInt(prompt('inserisci un altro numero compreso tra'));
+    console.log('nella Lista Bianca ci sono i seguenti numeri: ' + listaBianca);
 
-
-    if (inArray(listaBianca,numeroUtente)) {
-      numeroUtente = parseInt(prompt('non barare, inserisci un numero compreso tra ... ma che non hai usato in precedenza'));
-      console.log('il numero inserito dall\'utente è ' + numeroUtente);
-      risultato = inArray(listaNera,numeroUtente);
-      console.log('presente nella Lista Nera? ' + risultato);
-    } else {
-      console.log('il numero inserito dall\'utente è ' + numeroUtente);
-      risultato = inArray(listaNera,numeroUtente);
-      console.log('presente nella Lista Nera? ' + risultato);
-    }
 
   } else {
+
     alert('hai perso');
+
   }
 
 
   i++;
-
-
 }
 
-alert('il punteggio totalizzato dall\'utente è ' + listaBianca.length);
+
+alert('il tuo punteggio è ' + listaBianca.length);
