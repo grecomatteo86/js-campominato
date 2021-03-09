@@ -45,23 +45,24 @@ console.log('numero presente nella Lista Nera? ' + risultato);
 //eseguo il controllo: fintantochè il numeroUtente non è presente in listaNera, eseguo il prompt per 10 volte, inserendo i numeri buoni all'interno dell'array listaBianca
 var i = 0;
 
-while ( i <= 2 ) {
+while ( i < 2 ) {
 
   if (risultato == false) {
 
     listaBianca.push(numeroUtente);
     console.log('l\'utente non può più scegliere i seguenti numeri: ' + listaBianca);
     alert('continua a giocare');
-    var numeroUtente = parseInt(prompt('inserisci un altro numero compreso tra'));
+    numeroUtente = parseInt(prompt('inserisci un altro numero compreso tra'));
 
 
     if (inArray(listaBianca,numeroUtente)) {
-      var numeroUtente = parseInt(prompt('non barare, inserisci un numero compreso tra ... ma che non hai usato in precedenza'));
+      numeroUtente = parseInt(prompt('non barare, inserisci un numero compreso tra ... ma che non hai usato in precedenza'));
       console.log('il numero inserito dall\'utente è ' + numeroUtente);
+      risultato = inArray(listaNera,numeroUtente);
       console.log('presente nella Lista Nera? ' + risultato);
     } else {
       console.log('il numero inserito dall\'utente è ' + numeroUtente);
-      var risultato = inArray(listaNera,numeroUtente);
+      risultato = inArray(listaNera,numeroUtente);
       console.log('presente nella Lista Nera? ' + risultato);
     }
 
