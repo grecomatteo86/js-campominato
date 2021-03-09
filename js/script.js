@@ -43,11 +43,26 @@ while ( i < 3 && !inArray(listaNera,numeroUtente)) {
   var numeroUtente = parseInt(prompt('inserisci un numero compreso tra 1 e 100'));
   console.log('il numero scelto dall\'utente è ' + numeroUtente);
 
-  if (!inArray(listaNera,numeroUtente)) {
 
+
+  if (inArray(listaBianca,numeroUtente)) {
+
+    alert('stai barando, non puoi scegliere un numero che avevi gia scelto');
+
+    do {
+
+      numeroUtente = parseInt(prompt('inserisci un NUOVO  numero compreso tra 1 e 100'));
+
+    } while (inArray(listaBianca,numeroUtente));
+
+    console.log('il numero scelto dall\'utente è ' + numeroUtente);
     listaBianca.push(numeroUtente);
     console.log('nella Lista Bianca ci sono i seguenti numeri: ' + listaBianca);
 
+  } else if (!inArray(listaNera,numeroUtente)) {
+
+    listaBianca.push(numeroUtente);
+    console.log('nella Lista Bianca ci sono i seguenti numeri: ' + listaBianca);
 
   } else {
 
@@ -55,8 +70,8 @@ while ( i < 3 && !inArray(listaNera,numeroUtente)) {
 
   }
 
-
   i++;
+
 }
 
 
