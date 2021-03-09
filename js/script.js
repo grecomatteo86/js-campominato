@@ -3,6 +3,19 @@ function randomizzatore(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+// creo una funzione che mi dice se un elemento è presente nell'array
+function inArray(array,elemento) {
+  var i = 0;
+
+  while (i < array.length) {
+    if (array[1] == elemento) {
+      return true;
+    }
+    i++;
+  }
+  return false;
+}
+
 //creo un array vuoto che sarà il mio 'array numeri vietati'
 var listaNera = [];
 
