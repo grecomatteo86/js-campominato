@@ -8,7 +8,7 @@ function inArray(array,elemento) {
   var i = 0;
 
   while (i < array.length) {
-    if (array[1] == elemento) {
+    if (array[i] == elemento) {
       return true;
     }
     i++;
@@ -16,14 +16,17 @@ function inArray(array,elemento) {
   return false;
 }
 
+
 //creo un array vuoto che sarà il mio 'array numeri vietati'
 var listaNera = [];
+
 
 // con un ciclo for genero 8 numeri random e al suo interno invoco la funzione 'randomizzatore'
 for ( i = 0 ; i < 8; i++) {
   var numeroRandom = randomizzatore (1,50);
   listaNera.push(numeroRandom);
 }
+
 
 // stampo il mio array con gli 8 numeri random
 console.log('i numeri vietati sono ' + listaNera);
@@ -34,9 +37,17 @@ var numeroUtente = parseInt(prompt('inserisci un numero compreso tra'));
 console.log('il numero inserito dall\'utente è ' + numeroUtente);
 
 
-// eseguo il controllo: se il numero inserito dall'utente è presente nella lista di numeri random allora l'utente ha perso, altrimenti continua a giocare
-if (listaNera.includes(numeroUtente)) {
-  alert('hai perso');
-} else {
-  alert('continua a giocare');
-}
+// invoco la funzione 'inArray' per controllare se il numero inserito dall'utente è presente nella lista di numeri random
+var risultato = inArray(listaNera,numeroUtente);
+console.log(risultato);
+
+
+
+
+
+// // eseguo il controllo:  allora l'utente ha perso, altrimenti continua a giocare
+// if (listaNera.includes(numeroUtente)) {
+//   alert('hai perso');
+// } else {
+//   alert('continua a giocare');
+// }
