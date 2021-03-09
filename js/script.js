@@ -43,9 +43,9 @@ var risultato = inArray(listaNera,numeroUtente);
 console.log('numero presente nella Lista Nera? ' + risultato);
 
 //eseguo il controllo: fintantochè il numeroUtente non è presente in listaNera, eseguo il prompt per 10 volte, inserendo i numeri buoni all'interno dell'array listaBianca
-var i = 0;
+var i = 1;
 
-while ( i < 2 ) {
+while ( i <= 3 ) {
 
   if (risultato == false) {
 
@@ -73,4 +73,7 @@ while ( i < 2 ) {
 
   i++;
 
+
 }
+
+alert('il punteggio totalizzato dall\'utente è ' + listaBianca.length);
