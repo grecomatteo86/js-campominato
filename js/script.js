@@ -7,7 +7,7 @@ L’utente non può inserire più volte lo stesso numero.
 Se il numero è presente nella lista dei numeri generati, la partita termina, altrimenti si continua chiedendo all’utente un altro numero.
 La partita termina quando il giocatore inserisce un numero “vietato” o raggiunge il numero massimo possibile di numeri consentiti.
 Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
-BONUS: (da fare solo se funziona tutto il resto)
+BONUS:
 all’inizio il software richiede anche una difficoltà all’utente che cambia il range di numeri casuali:
 con difficoltà 0 => tra 1 e 100
 con difficoltà 1 => tra 1 e 80
@@ -50,13 +50,65 @@ function inArray(array,elemento) {
 
 }
 
+/* BONUS:
+all’inizio il software richiede anche una difficoltà all’utente che cambia il range di numeri casuali:
+con difficoltà 0 => tra 1 e 100
+con difficoltà 1 => tra 1 e 80
+con difficoltà 2 => tra 1 e 50 */
+
+do {   // il do mi serve per fare il controllo
+
+  var sceltaUtente = parseInt(prompt('Inserisci il livello di difficoltà: 0, 1 o 2'));
+
+} while (sceltaUtente != 0 && sceltaUtente != 1 && sceltaUtente != 2);
+
+/* In base al livello che sceglie l'utente,  dobbiamo cambiare:
+i numeri generati, cioè non saranno più da 1 a 100 ma da 1 a x
+il valore 84 */
+
+
+var limMaxNum;
+
+/*                                  Opzione 1
+if (sceltaUtente == 0) {
+
+  limMaxNum = 100;
+
+} else if (sceltaUtente == 1) {
+
+  limMaxNum = 80;
+
+} else {
+
+  limMaxNum = 50;
+
+}
+*/
+
+switch (sceltaUtente) {        // Opzione 2
+  case 0:
+    limMaxNum = 100;
+  break;
+
+  case 1:
+    limMaxNum = 80;
+  break;
+
+  case 2:
+    limMaxNum = 50;
+  break;
+
+}
+// la var limMaxNum ce la andiamo ad utilizzare inserendola nell'oggetto della funzione randomizzatore
+
+
 /* 1. Il computer deve generare 16 numeri casuali tra 1 e 100. I numeri NON POSSONO ESSERE DUPLICATI.
 La mia var bombe parte come array vuoto e faccio un ciclo indefinito fintantochè la lunghezza dell'array non diventa 16 */
 var bombe = [];
 
 while (bombe.length < 16) {
 
-  var numeroRandom = randomizzatore(1, 100);
+  var numeroRandom = randomizzatore(1, limMaxNum);
 
   if (inArray(bombe,numeroRandom) == false) {  //questo controllo mi serve per non permettere che il programma mi genera due o più numeri bomba uguali: se la condizione (bombe.includes(numeroRandom) == false), cioè il numeroRandom NON è presente nella lista di bombe, allora lo inserisco in quest'ultima. In questo caso non ho neanche bisogno di un else.
 
@@ -77,11 +129,14 @@ var bombaEspolsa = false;
 /* Faccio un ciclo while: non vado a chiedere all'utente di inserire per 84 volte il numero, ma gli chiedo i numeri SOLO non sono numeri bomba e non sono presenti nell'array numeriValidi; ecco perchè il contatore del mio ciclo while sarà numeriValidi.length < 84;
 Questo numeriValidi.length < 84 risponde alla logica che la partita termina quando il giocatore inserisce un numero “vietato” o RAGGIUNGE IL MASSIMO POSSIBILE DEI NUMERI CONSENTITI, che sono 84.
 Ora, invece chiedo < 84 inizialmente metto 10 perchè mi consente di fare il debug in maniera più facile. */
-while (numeriValidi.length < 84 && bombaEspolsa == false) {
+
+var possibilità = limMaxNum - 16;   //la var possibilità mi va a cambiare l'iniziale valore di 84 (100 - 16), che deve cambiare in base alla scelta del livello dell'utente
+
+while (numeriValidi.length < possibilità && bombaEspolsa == false) {
 
   var numero = parseInt(prompt('inserisci un numero'));
 
-  if (isNaN(numero) || numero < 1 || numero > 100) {      //controllo: il numero inserito dall'utente deve essere compreso tra 1 e 100.
+  if (isNaN(numero) || numero < 1 || numero > limMaxNum) {      //controllo: il numero inserito dall'utente deve essere compreso tra 1 e 100.
 
     alert('ATTENZIONE: quello che inserisci deve essere un NUMERO e deve essere COMPRESO tra 1 e 100');
 
