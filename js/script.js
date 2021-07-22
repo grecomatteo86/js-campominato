@@ -33,6 +33,9 @@ function inArray(array,element) {
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // BONUS SECTION:
+do {
+  var userLevel = parseInt(prompt('Inserisci il livello di difficoltà: 0, 1 o 2'));
+} while (userLevel != 0 && userLevel != 1 && userLevel != 2);
 var limMaxNum;
 switch (userLevel) {
   case 0:
@@ -71,19 +74,10 @@ while (bombsFreeArray.length < userPossibilities && pickedBomb == false) {
     bombsFreeArray.push(userNumber);
   }
 }
-
-
-/* 3. La partita termina quando il giocatore inserisce un numero “vietato” o raggiunge il numero massimo possibile di numeri consentiti.
-Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito. */
-
-if (pickedBomb == true) {  //controllo: a questo punto del programma vado a verificare il valore della var bombaEspolsa, perchè se uguale a true vuol dire che l'utente ha beccato una bomba
-
-  console.log('Hai preso la BOMBA!!! Hai totalizzato ' + bombsFreeArray.length + ' punti')
-
-} else {   //se arrivo fin qui vuol dire che l'utente ha indovinato tutti i numeri consentiti e non ha preso nessuna bomba, quindi il valore della var bombaEspolsa è rimasto false
-
-  console.log('COMPLIMENTI, hai inserito tutti i numeri validi!!!');
-
+// 3. The game ends when user gets the bomb or fill up userPossibilities.
+if (pickedBomb == true) {
+  console.log('You got the BOMB!!! Total points: ' + bombsFreeArray.length)
+} else {
+  console.log('COMPLIMENTS, you have inserted only valid numbers!!!');
 }
-
-console.log('Le bombe erano ai numeri ' + bombsArray);
+console.log('Bombs were: ' + bombsArray);
