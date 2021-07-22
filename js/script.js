@@ -31,43 +31,21 @@ function inArray(array,element) {
   }
   return false;
 }
-//-----------------------------------------------------------------------------------------------------------------------------------------
-
-/* BONUS:
-all’inizio il software richiede anche una difficoltà all’utente che cambia il range di numeri casuali:
-con difficoltà 0 => tra 1 e 100
-con difficoltà 1 => tra 1 e 80
-con difficoltà 2 => tra 1 e 50 */
-
-do {   // il do mi serve per fare il controllo
-
-  var sceltaUtente = parseInt(prompt('Inserisci il livello di difficoltà: 0, 1 o 2'));
-
-} while (sceltaUtente != 0 && sceltaUtente != 1 && sceltaUtente != 2);
-
-/* In base al livello che sceglie l'utente,  dobbiamo cambiare:
-i numeri generati, cioè non saranno più da 1 a 100 ma da 1 a x
-il valore 84 */
-
-
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// BONUS SECTION:
 var limMaxNum;
-
-
-switch (sceltaUtente) {        // Opzione 2
+switch (userLevel) {
   case 0:
     limMaxNum = 100;
   break;
-
   case 1:
     limMaxNum = 80;
   break;
-
   case 2:
     limMaxNum = 50;
   break;
-
 }
-// la var limMaxNum ce la andiamo ad utilizzare inserendola nell'oggetto della funzione rendomizer
+//------------------------
 
 
 /* 1. Il computer deve generare 16 numeri casuali tra 1 e 100. I numeri NON POSSONO ESSERE DUPLICATI.
