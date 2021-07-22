@@ -1,54 +1,37 @@
 /*
-CONSEGNA:
-Il computer deve generare 16 numeri casuali tra 1 e 100.
-I numeri non possono essere duplicati.
-In seguito deve chiedere all’utente (100 - 16) volte di inserire un numero alla volta, sempre compreso tra 1 e 100.
-L’utente non può inserire più volte lo stesso numero.
-Se il numero è presente nella lista dei numeri generati, la partita termina, altrimenti si continua chiedendo all’utente un altro numero.
-La partita termina quando il giocatore inserisce un numero “vietato” o raggiunge il numero massimo possibile di numeri consentiti.
-Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
+TOPIC:
+The computer must generate 16 random numbers between 1 and 100.
+Numbers cannot be duplicated.
+Then it must ask the user (100 - 16) times to enter one number at a time, always between 1 and 100.
+The user cannot enter the same number multiple times.
+If the number is present in the list of generated numbers, the game ends, otherwise it continues by asking the user for another number.
+The game ends when the player reaches a "forbidden number" or reaches the maximum possible allowed number.
+At the end of the game the software must communicate the score, that is the number of times the user has entered an allowed number.
 BONUS:
-all’inizio il software richiede anche una difficoltà all’utente che cambia il range di numeri casuali:
-con difficoltà 0 => tra 1 e 100
-con difficoltà 1 => tra 1 e 80
-con difficoltà 2 => tra 1 e 50
+at the beginning the software also requires at the user a difficulty level that changes the range of random numbers:
+difficulty level 0 => from 1 to 100
+difficulty level 1 => from 1 to 80
+difficulty level 2 => from 1 to 50
 */
-
-// FUNZIONI
-
-
-// randomizzatore - genera un numero random dato un range di numeri min e max, estremi compresi
-
-function randomizzatore(min, max) {
-
-  var numero = Math.floor(Math.random() * (max - min + 1) + min);  //questa var numero è una var LOCALE della mia funzione, quindi non vado a sovrascrivere nessuna altra variabile
-
-  return numero;
-
+//---------------------------------------------------------------------------------------------------------------------------------------
+// FUNCTIONS
+// randomizer - generate a random number in a range of number min e max, including extremes.
+function rendomizer(min, max) {
+  var getRandomNumber = Math.floor(Math.random() * (max - min + 1) + min);  //this var getRandomNumber is a LOCAL var of my function, so it doesn't subscribe any other var.
+  return getRandomNumber;
 }
-
-
-// inArray - funzione che mi dice se un elemento è presente in un array
-
-function inArray(array,elemento) {
-
+// inArray - function that says if an element exist inside the array.
+function inArray(array,element) {
   var i = 0;
-
   while (i < array.length) {
-
-    if (array[i] == elemento) {
-
+    if (array[i] == element) {
       return true;
-
     }
-
     i++;
-
   }
-
   return false;
-
 }
+//-----------------------------------------------------------------------------------------------------------------------------------------
 
 /* BONUS:
 all’inizio il software richiede anche una difficoltà all’utente che cambia il range di numeri casuali:
@@ -69,21 +52,6 @@ il valore 84 */
 
 var limMaxNum;
 
-/*                                  Opzione 1
-if (sceltaUtente == 0) {
-
-  limMaxNum = 100;
-
-} else if (sceltaUtente == 1) {
-
-  limMaxNum = 80;
-
-} else {
-
-  limMaxNum = 50;
-
-}
-*/
 
 switch (sceltaUtente) {        // Opzione 2
   case 0:
@@ -99,7 +67,7 @@ switch (sceltaUtente) {        // Opzione 2
   break;
 
 }
-// la var limMaxNum ce la andiamo ad utilizzare inserendola nell'oggetto della funzione randomizzatore
+// la var limMaxNum ce la andiamo ad utilizzare inserendola nell'oggetto della funzione rendomizer
 
 
 /* 1. Il computer deve generare 16 numeri casuali tra 1 e 100. I numeri NON POSSONO ESSERE DUPLICATI.
@@ -108,7 +76,7 @@ var bombe = [];
 
 while (bombe.length < 16) {
 
-  var numeroRandom = randomizzatore(1, limMaxNum);
+  var numeroRandom = rendomizer(1, limMaxNum);
 
   if (inArray(bombe,numeroRandom) == false) {  //questo controllo mi serve per non permettere che il programma mi genera due o più numeri bomba uguali: se la condizione (bombe.includes(numeroRandom) == false), cioè il numeroRandom NON è presente nella lista di bombe, allora lo inserisco in quest'ultima. In questo caso non ho neanche bisogno di un else.
 
@@ -138,7 +106,7 @@ while (numeriValidi.length < possibilità && bombaEspolsa == false) {
 
   if (isNaN(numero) || numero < 1 || numero > limMaxNum) {      //controllo: il numero inserito dall'utente deve essere compreso tra 1 e 100.
 
-    alert('ATTENZIONE: quello che inserisci deve essere un NUMERO e deve essere COMPRESO tra 1 e 100');
+    alert('ATTENZIONE: quello che inserisci deve essere un NUMERO e deve essere COMPRESO tra 1 e ' + limMaxNum);
 
   } else if (inArray(bombe,numero) == true) {     //controllo:se il numero inserito dall'utente è una bomba allora la partita deve terminare;come faccio a uscire dal ciclo se l'utente becca la bomba?con lo stratagemma della var d'appoggio:mi creo la var bombaEspolsa, inizialmente impostata false;la inserisco nel while, come condizione di prosecuzione del mio ciclo e dentro l'if dico che se l'utente inserisce un numero bomba allora questa var diventa true; in questo modo mi fa terminare il ciclo
 
