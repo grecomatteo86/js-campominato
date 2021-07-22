@@ -45,23 +45,14 @@ switch (userLevel) {
     limMaxNum = 50;
   break;
 }
-//------------------------
-
-
-/* 1. Il computer deve generare 16 numeri casuali tra 1 e 100. I numeri NON POSSONO ESSERE DUPLICATI.
-La mia var bombe parte come array vuoto e faccio un ciclo indefinito fintantochè la lunghezza dell'array non diventa 16 */
-var bombe = [];
-
-while (bombe.length < 16) {
-
-  var numeroRandom = rendomizer(1, limMaxNum);
-
-  if (inArray(bombe,numeroRandom) == false) {  //questo controllo mi serve per non permettere che il programma mi genera due o più numeri bomba uguali: se la condizione (bombe.includes(numeroRandom) == false), cioè il numeroRandom NON è presente nella lista di bombe, allora lo inserisco in quest'ultima. In questo caso non ho neanche bisogno di un else.
-
-    bombe.push(numeroRandom);
-
+//---------------------------------------------------------------------------------------------------
+// 1. The computer generates 16 random numers between 1 and limMaxNum. Numbers CANNOT BE DUPLICATED.
+var bombsArray = [];
+while (bombsArray.length < 16) {
+  var randomNumber = rendomizer(1, limMaxNum);
+  if (inArray(bombsArray,randomNumber) == false) {
+    bombsArray.push(randomNumber);
   }
-
 }
 
 /* 2. Chiedo all’utente (100 - 16) volte di inserire un numero alla volta, sempre compreso tra 1 e 100.
@@ -86,7 +77,7 @@ while (numeriValidi.length < possibilità && bombaEspolsa == false) {
 
     alert('ATTENZIONE: quello che inserisci deve essere un NUMERO e deve essere COMPRESO tra 1 e ' + limMaxNum);
 
-  } else if (inArray(bombe,numero) == true) {     //controllo:se il numero inserito dall'utente è una bomba allora la partita deve terminare;come faccio a uscire dal ciclo se l'utente becca la bomba?con lo stratagemma della var d'appoggio:mi creo la var bombaEspolsa, inizialmente impostata false;la inserisco nel while, come condizione di prosecuzione del mio ciclo e dentro l'if dico che se l'utente inserisce un numero bomba allora questa var diventa true; in questo modo mi fa terminare il ciclo
+  } else if (inArray(bombsArray,numero) == true) {     //controllo:se il numero inserito dall'utente è una bomba allora la partita deve terminare;come faccio a uscire dal ciclo se l'utente becca la bomba?con lo stratagemma della var d'appoggio:mi creo la var bombaEspolsa, inizialmente impostata false;la inserisco nel while, come condizione di prosecuzione del mio ciclo e dentro l'if dico che se l'utente inserisce un numero bomba allora questa var diventa true; in questo modo mi fa terminare il ciclo
 
     bombaEspolsa = true;
 
@@ -115,4 +106,4 @@ if (bombaEspolsa == true) {  //controllo: a questo punto del programma vado a ve
 
 }
 
-console.log('Le bombe erano ai numeri ' + bombe);
+console.log('Le bombe erano ai numeri ' + bombsArray);
